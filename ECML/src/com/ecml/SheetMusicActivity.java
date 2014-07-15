@@ -457,6 +457,9 @@ public class SheetMusicActivity extends Activity implements SurfaceHolder.Callba
 		case R.id.help:
 			showHelp();
 			return true;
+		case R.id.database:
+			showDatabase();
+			return true;
 		case R.id.youtube:
 			showYoutube();
 			return true;
@@ -628,6 +631,11 @@ public class SheetMusicActivity extends Activity implements SurfaceHolder.Callba
 	/** Show the HTML help screen. */
 	private void showHelp() {
 		Intent intent = new Intent(this, HelpActivity.class);
+		startActivity(intent);
+	}
+	/** Show the database. */
+	private void showDatabase() {
+		Intent intent = new Intent(this, musicdbActivity.class);
 		startActivity(intent);
 	}
 

@@ -88,6 +88,10 @@
                 android:id="@+id/song_settings"
                 android:icon="@android:drawable/ic_menu_preferences"
                 android:title="@string/song_settings_str"/>
+          <item  
+                android:id="@+id/database"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="@string/database"/>
             <item
                 android:id="@+id/save_images"
                 android:icon="@android:drawable/ic_menu_save"

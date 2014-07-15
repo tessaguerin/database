@@ -114,6 +114,10 @@
         <activity android:name="ReadingGameModeActivity"></activity>
         <activity android:name="ReadingGameBeginner"></activity>
         <activity android:name="ReadingGameNormal"></activity>
+        <activity android:name="musicdbActivity"></activity>
+        <activity android:name="MySQLiteHelper"></activity>
+        <activity android:name="titleDataSource"></activity>
+        <activity android:name="title"></activity>
     </application>
 
 </manifest>
