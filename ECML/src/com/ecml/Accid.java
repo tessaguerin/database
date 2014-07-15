@@ -15,6 +15,8 @@ package com.ecml;
 
 /** Accidentals */
 public enum Accid {
+	
+	/* test */
     None, Sharp, Flat, Natural
 }
 
