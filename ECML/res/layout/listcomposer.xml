@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/bach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bach" />
+
+    <Button
+        android:id="@+id/beethoven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beethoven" />
+
+    <Button
+        android:id="@+id/Chopin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chopin" />
+
+    <Button
+        android:id="@+id/borodin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borodin" />
+
+</LinearLayout>

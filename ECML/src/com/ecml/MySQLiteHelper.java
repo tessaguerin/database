@@ -19,9 +19,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String TABLE_TITLE = "title";
 	  public static final String COLUMN_ID = "_id";
 	  public static final String COLUMN_TITLE = "title";
-	  
-//	  public static final String TABLE_COMPOSER = "composer";
-//	  public static final String COLUMN_NAME = "name";
+
+	  public static final String TABLE_COMPOSER = "composer";
+	  public static final String COLUMN_NAME = "name";
 
 	  private static final String DATABASE_NAME = "Mydb";
 	  private static final int DATABASE_VERSION = 1;
@@ -32,9 +32,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	      + " integer PRIMARY KEY AUTOINCREMENT, " + COLUMN_TITLE
 	      + " text not null);";
 	  
-//	  private static final String DATABASE_CREATE_COMPOSER = "create table "
-//		      + TABLE_COMPOSER + "(" + COLUMN_NAME
-//		      + " integer PRIMARY KEY AUTOINCREMENT, ";
+	  private static final String DATABASE_CREATE_COMPOSER = "create table "
+		      + TABLE_COMPOSER + "(" + COLUMN_NAME
+		      + " integer PRIMARY KEY AUTOINCREMENT, ";
 
 	  public MySQLiteHelper(Context context) {
 		  super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,7 +42,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	  public void onCreate(SQLiteDatabase database) {
 	    database.execSQL(DATABASE_CREATE);
-//	    database.execSQL(DATABASE_CREATE_COMPOSER);
+	    database.execSQL(DATABASE_CREATE_COMPOSER);
 	  }
 
 	  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -50,36 +50,43 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	        "Upgrading database from version " + oldVersion + " to "
 	            + newVersion + ", which will destroy all old data");
 	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TITLE);
-//	    db.execSQL("INSERT INTO composer VALUES ('Bach');");
-//	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMPOSER);
+	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMPOSER);
 	    onCreate(db);
 	  }
 	  
-//	  public void addTitle (title title){
+	  public void addTitle (title title){
 		  
 		  // 1. get reference to writable DB
 //          SQLiteDatabase db = this.getWritableDatabase();
+          String countQuery = "SELECT * FROM " + TABLE_TITLE;
+        		  SQLiteDatabase db = this.getReadableDatabase();
+        		  Cursor cursor = db.rawQuery(countQuery, null);
+        		  cursor.moveToFirst();
+//           db.query("title", new String[]{
+//        		   "_iD",
+//        		   "title"
+//           }, null, null, null, null, null, null);
 		  
-//		  Cursor c= db.rawQuery("SELECT * FROM composer", null);
+//		  Cursor c= db.rawQuery("SELECT * FROM" + TABLE_COMPOSER, null);
 //		  c.moveToFirst();
 //		  Log.d("Bach", c.getString(c.getColumnIndex("name")));
    
   // 1. get reference to writable DB
- //         SQLiteDatabase db = this.getWritableDatabase();
+//        SQLiteDatabase db = this.getWritableDatabase();
 
   // 2. create ContentValues to add key "column"/value
 //  ContentValues values = new ContentValues();
-//  values.put(KEY_TITLE, title.getTitle()); // get title
+//  values.put(COLUMN_TITLE, title.getTitle()); // get title
  
 
   // 3. insert
 //  db.insert(TABLE_TITLE, // table
- //        null, //nullColumnHack
+//        null, //nullColumnHack
 //          values); // key/value -> keys = column names/ values = column values
 
-  // 4. close
- // db.close();
-//}
+     // 4. close
+ db.close();
+ }
 
 	// Books Table Columns names
 //	    private static final String KEY_ID = "_id";

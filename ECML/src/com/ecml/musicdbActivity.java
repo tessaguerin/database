@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 
 public class musicdbActivity extends ListActivity {
 	private titleDataSource datasource;
+ 	private MySQLiteHelper chooseComposer;
+ 	private choose_composer selectComposer;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,13 @@ public class musicdbActivity extends ListActivity {
 		setContentView(R.layout.database);
 
 		datasource = new titleDataSource(this);
+		chooseComposer = new MySQLiteHelper(this);
 		datasource.open();
+		
+		// Création et insertion d'un titre:
+//	    title title = new title("fkoekor");
+//		datasource.createTitle("Bach");
+//		datasource.createTitle("Beethoven");
 
 		List<title> values = datasource.getAllTitle();
 
@@ -28,20 +36,27 @@ public class musicdbActivity extends ListActivity {
 				android.R.layout.simple_list_item_1, values);
 		setListAdapter(adapter);
 	}
+	
+
 
 	// Will be called via the onClick attribute
-	// of the buttons in main.xml
+	// of the buttons in database.xml
 	public void onClick(View view) {
 		@SuppressWarnings("unchecked")
 		ArrayAdapter<title> adapter = (ArrayAdapter<title>) getListAdapter();
 		title title = null;
 		switch (view.getId()) {
 		case R.id.by_composer:
-			String[] titles = new String[] { "Cool", "Very nice", "Hate it" };
-			int nextInt = new Random().nextInt(3);
+			Intent goToChooseComposer = new Intent(getApplicationContext(),
+					choose_composer.class);
+			startActivity(goToChooseComposer);
+			
+//			chooseComposer.addTitle(title);
+//			String[] titles = new String[] { "Cool", "Very nice", "Hate it" };
+//			int nextInt = new Random().nextInt(3);
 			// save the new comment to the database
-			title = datasource.createTitle(titles[nextInt]);
-			adapter.add(title);
+//			title = datasource.createTitle(titles[nextInt]);
+//			adapter.add(title);
 			break;
 
 		case R.id.by_difficulty:

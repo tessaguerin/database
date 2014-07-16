@@ -118,6 +118,7 @@
         <activity android:name="MySQLiteHelper"></activity>
         <activity android:name="titleDataSource"></activity>
         <activity android:name="title"></activity>
+        <activity android:name="choose_composer"></activity>
     </application>
 
 </manifest>
