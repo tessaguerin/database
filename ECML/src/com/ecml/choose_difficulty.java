@@ -20,49 +20,41 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 
-     public class choose_composer extends Activity {
-     private composerDataSource composerDatasource;
+     public class choose_difficulty extends Activity {
+     private difficultydataSource difficultyDatasource;
      private ArrayList<String> results = new ArrayList<String>();
-   	private String tableComposer = MySQLiteHelper.TABLE_COMPOSER;
+   	private String tableDifficulty = MySQLiteHelper.TABLE_DIFFICULTY;
  	private SQLiteDatabase database;
 
 	Button addmem_bt;
-	Button modify_bt;
 	ListView lv;
-	composerDataSource dbcon;
+	difficultydataSource dbcon;
 	TextView memID_tv, memName_tv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.listcomposer);
-		dbcon = new composerDataSource(this);
+		setContentView(R.layout.listdifficulty);
+		dbcon = new difficultydataSource(this);
 		dbcon.open();
 		addmem_bt = (Button) findViewById(R.id.add_button);
-		modify_bt = (Button) findViewById (R.id.modify_btn);
-		
 		lv = (ListView) findViewById(R.id.listView2);
-		
 		// onClickListiner for addmember Button
 		addmem_bt.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent add_mem = new Intent(choose_composer.this, add_composer.class);
+				Intent add_mem = new Intent(choose_difficulty.this, add_difficulty.class);
 				startActivity(add_mem);
 			}
-			
 		});
-
-		
-
 
 		// Attach The Data From DataBase Into ListView Using Crusor Adapter
 		Cursor cursor = dbcon.readData();
-		String[] from = new String[] { MySQLiteHelper.KEY_ID, MySQLiteHelper.KEY_NAME_COMPOSER };
+		String[] from = new String[] { MySQLiteHelper.KEY_ID, MySQLiteHelper.KEY_NOTE_DIFFICULTY };
 		int[] to = new int[] { R.id.composer_id, R.id.composer_name };
 
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-				choose_composer.this, R.layout.view_members, cursor, from, to);
+				choose_difficulty.this, R.layout.view_members, cursor, from, to);
 
 		adapter.notifyDataSetChanged();
 		lv.setAdapter(adapter);
@@ -71,7 +63,6 @@ import android.widget.AdapterView.OnItemClickListener;
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-	
 					int position, long id) {
 				memID_tv = (TextView) view.findViewById(R.id.composer_id);
 				memName_tv = (TextView) view.findViewById(R.id.composer_name);
@@ -81,7 +72,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 				Intent modify_intent = new Intent(getApplicationContext(),
 						modify_composer.class);
-			modify_intent.putExtra("memberName", memberName_val);
+				modify_intent.putExtra("memberName", memberName_val);
 				modify_intent.putExtra("memberID", memberID_val);
 				startActivity(modify_intent);
 			}

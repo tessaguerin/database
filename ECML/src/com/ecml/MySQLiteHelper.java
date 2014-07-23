@@ -17,24 +17,36 @@ import android.util.Log;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	  public static final String TABLE_TITLE = "title";
-	  public static final String COLUMN_ID = "_id";
-	  public static final String COLUMN_TITLE = "title";
+	  public static final String KEY_ID = "_id";
+	  public static final String KEY_TITLE = "title";
 
 	  public static final String TABLE_COMPOSER = "composer";
-	  public static final String COLUMN_NAME = "name";
+	  public static final String KEY_ID_COMPOSER = "id";
+	  public static final String KEY_NAME_COMPOSER = "name_composer";
 
+	  public static final String TABLE_DIFFICULTY = "difficulty";
+	  public static final String KEY_ID_DIFFICULTY = "id";
+	  public static final String KEY_NOTE_DIFFICULTY = "note";
+	  
+	 
 	  private static final String DATABASE_NAME = "Mydb";
 	  private static final int DATABASE_VERSION = 1;
 
 	  // Database creation sql statement
 	  private static final String DATABASE_CREATE = "create table "
-	      + TABLE_TITLE + "(" + COLUMN_ID
-	      + " integer PRIMARY KEY AUTOINCREMENT, " + COLUMN_TITLE
+	      + TABLE_TITLE + "(" + KEY_ID
+	      + " integer PRIMARY KEY AUTOINCREMENT, " + KEY_TITLE
 	      + " text not null);";
 	  
 	  private static final String DATABASE_CREATE_COMPOSER = "create table "
-		      + TABLE_COMPOSER + "(" + COLUMN_NAME
-		      + " integer PRIMARY KEY AUTOINCREMENT, ";
+		      + TABLE_COMPOSER + "(" + KEY_ID
+		      + " integer PRIMARY KEY AUTOINCREMENT, " + KEY_NAME_COMPOSER
+		      + " text not null);";
+	  
+	  private static final String DATABASE_CREATE_DIFFICULTY = "create table "
+		      + TABLE_DIFFICULTY + "(" + KEY_ID
+		      + " integer PRIMARY KEY AUTOINCREMENT, " + KEY_NOTE_DIFFICULTY
+		      + " int not null);";
 
 	  public MySQLiteHelper(Context context) {
 		  super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,6 +55,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public void onCreate(SQLiteDatabase database) {
 	    database.execSQL(DATABASE_CREATE);
 	    database.execSQL(DATABASE_CREATE_COMPOSER);
+	    database.execSQL(DATABASE_CREATE_DIFFICULTY);
 	  }
 
 	  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -51,8 +64,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	            + newVersion + ", which will destroy all old data");
 	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TITLE);
 	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMPOSER);
+	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIFFICULTY);
 	    onCreate(db);
+	    
+	    db.execSQL("INSERT INTO" + TABLE_COMPOSER + "VALUES('Bach');");
 	  }
+
+
 	  
 	  public void addTitle (title title){
 		  
@@ -88,43 +106,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
  db.close();
  }
 
-	// Books Table Columns names
-//	    private static final String KEY_ID = "_id";
-//	    private static final String KEY_TITLE = "title";
-	
-	 
-//	    private static final String[] COLUMNS = {KEY_ID,KEY_TITLE};
-	 
-	    
-//	    public title getTitle(int id){
-	 
-	        // 1. get reference to readable DB
-//	        SQLiteDatabase db = this.getReadableDatabase();
-	 
-	        // 2. build query
-//	        Cursor cursor =
-//	                db.query(TABLE_TITLE	, // a. table
-//	                COLUMNS, // b. column names
-//	                " id = ?", // c. selections
-//	                new String[] { String.valueOf(id) }, // d. selections args
-//	                null, // e. group by
-//	                null, // f. having
-//	                null, // g. order by
-//	                null); // h. limit
-	 
-	        // 3. if we got results get the first one
-//	        if (cursor != null)
-//	            cursor.moveToFirst();
-	 
-	        // 4. build book object
-//	        title title = new title();
-//	        title.setId(Integer.parseInt(cursor.getString(0)));
-//	        title.setTitle(cursor.getString(1));
-
-	 
-	        // 5. return book
-//	        return title;
-//	    }
 
 }
 

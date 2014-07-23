@@ -119,6 +119,16 @@
         <activity android:name="titleDataSource"></activity>
         <activity android:name="title"></activity>
         <activity android:name="choose_composer"></activity>
+        <activity android:name="composer"></activity>
+        <activity android:name="difficulty"></activity>
+        <activity android:name="composerDataSource"></activity>
+        <activity android:name="difficultydataSource"></activity>
+        <activity android:name="SongByComposer"></activity>
+        <activity android:name="add_composer"></activity>
+        <activity android:name="modify_composer"></activity>
+        <activity android:name="choose_difficulty"></activity>
+        <activity android:name="add_difficulty"></activity>
+        <activity android:name="delete_difficulty"></activity>
     </application>
 
 </manifest>

@@ -5,16 +5,10 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/modify_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modify a composer" />
-
-    <Button
         android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add a Composer" />
+        android:text="Add a difficulty level" />
 
     <ListView
         android:id="@+id/listView2"

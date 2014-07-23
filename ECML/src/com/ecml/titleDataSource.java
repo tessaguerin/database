@@ -18,8 +18,8 @@ import android.util.Log;
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private MySQLiteHelper dbHelper;
-	  private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
-	      MySQLiteHelper.COLUMN_TITLE };
+	  private String[] allColumns = { MySQLiteHelper.KEY_ID,
+	      MySQLiteHelper.KEY_TITLE };
 
 	  public titleDataSource(Context context) {
 	    dbHelper = new MySQLiteHelper(context);
@@ -45,14 +45,14 @@ import android.util.Log;
 	    ContentValues values = new ContentValues();
 	    
 	     // On lui ajoute des valeurs:
-	    values.put(MySQLiteHelper.COLUMN_TITLE, title);
+	    values.put(MySQLiteHelper.KEY_TITLE, title);
 	    
 	    // On insert l'objet dans la BDD via le ContentValues:
 	    long insertId = database.insert(MySQLiteHelper.TABLE_TITLE, null,
 	        values);
 	    
 	    Cursor cursor = database.query(MySQLiteHelper.TABLE_TITLE,
-	        allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
+	        allColumns, MySQLiteHelper.KEY_ID + " = " + insertId, null,
 	        null, null, null);
 	    cursor.moveToFirst();
 	    title newTitle = cursorToTitle(cursor);
@@ -64,7 +64,7 @@ import android.util.Log;
 	  public void deleteTitle(title title) {
 	    long id = title.getId();
 	    System.out.println("Comment deleted with id: " + id);
-	    database.delete(MySQLiteHelper.TABLE_TITLE, MySQLiteHelper.COLUMN_ID
+	    database.delete(MySQLiteHelper.TABLE_TITLE, MySQLiteHelper.KEY_ID
 	        + " = " + id, null);
 	  }
 
@@ -90,4 +90,6 @@ import android.util.Log;
      title.setTitle(cursor.getString(1));
 	    return title;
 	  }
+	  
+	 
 }

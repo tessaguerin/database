@@ -20,14 +20,14 @@
             android:id="@+id/by_difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose by difficulty" 
+            android:text="Choose by difficulty"
             android:onClick="onClick"/>
         
         <Button
             android:id="@+id/all_songs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All" 
+            android:text="All"
             android:onClick="onClick"/>
         
   </LinearLayout>
@@ -39,4 +39,3 @@
         android:text="@string/hello" />
 
 </LinearLayout> 
-
